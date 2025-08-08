@@ -315,8 +315,8 @@ function showFeedback(isCorrect, explanation) {
     elements.feedbackHeader.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
     elements.feedbackHeader.className = 'feedback-header ' + (isCorrect ? 'correct' : 'incorrect');
     
-    // Set explanation
-    elements.feedbackExplanation.textContent = explanation;
+    // Set explanation (use innerHTML to support links)
+    elements.feedbackExplanation.innerHTML = explanation;
     
     // Update next button text
     const isLastQuestion = quizState.currentQuestionIndex === quizState.questions.length - 1;
@@ -415,7 +415,7 @@ function createReviewItem(answer, questionNumber) {
     
     const explanationEl = document.createElement('div');
     explanationEl.className = 'review-explanation';
-    explanationEl.textContent = answer.explanation;
+    explanationEl.innerHTML = answer.explanation;
     item.appendChild(explanationEl);
     
     return item;

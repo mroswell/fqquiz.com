@@ -223,7 +223,7 @@
           "correct": false
         }
       ],
-      "explanation": "The FDA issued the first Black Box Warning for tendon ruptures associated with fluoroquinolones in 2008.",
+      "explanation": "The FDA issued the first Black Box Warning for tendon ruptures associated with fluoroquinolones in 2008.<sup>1</sup> <br><br><small><sup>1</sup> <a href='https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-fda-updates-warnings-oral-and-injectable-fluoroquinolone-antibiotics' target='_blank' rel='noopener'>FDA Drug Safety Communication</a></small>",
       "category": "regulatory-history",
       "difficulty": "medium"
     },

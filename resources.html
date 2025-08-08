@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resources for fluoroquinolone toxicity awareness and support">
+    <title>Resources - Fluoroquinolone Safety</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resources.html" class="active">Resources</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- Header -->
+        <header class="page-header">
+            <h1>Resources</h1>
+            <p>Information and support for fluoroquinolone toxicity awareness</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <section class="resource-section">
+                <h2>Community & Support</h2>
+                <div class="resource-card">
+                    <h3><a href="https://www.thisisfloxed.com/" target="_blank" rel="noopener">This is Floxed</a></h3>
+                    <p>Comprehensive information about fluoroquinolone toxicity, recovery stories, and resources for those affected.</p>
+                </div>
+            </section>
+
+            <section class="resource-section">
+                <h2>Connect on Social Media</h2>
+                <div class="resource-card">
+                    <h3><a href="https://www.tiktok.com/@taliasmith2021" target="_blank" rel="noopener">TikTok - @taliasmith2021</a></h3>
+                    <p>Follow Talia's journey and advocacy work on TikTok.</p>
+                </div>
+                <div class="resource-card">
+                    <h3><a href="https://linktr.ee/finding.vulneraries" target="_blank" rel="noopener">Linktree</a></h3>
+                    <p>All of Talia's links and resources in one place.</p>
+                </div>
+            </section>
+
+            <section class="resource-section">
+                <h2>Official Information</h2>
+                <div class="resource-card">
+                    <h3><a href="https://www.fda.gov/drugs/drug-safety-and-availability" target="_blank" rel="noopener">FDA Drug Safety</a></h3>
+                    <p>Official FDA information about drug safety, including warnings and communications about fluoroquinolone antibiotics.</p>
+                </div>
+                <div class="resource-card">
+                    <h3><a href="https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-fda-updates-warnings-oral-and-injectable-fluoroquinolone-antibiotics" target="_blank" rel="noopener">FDA Fluoroquinolone Warning</a></h3>
+                    <p>FDA's official safety communication about fluoroquinolone antibiotic warnings.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="quiz-footer">
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> This information is for educational purposes only and should not be used as medical advice. Consult with a healthcare professional for medical decisions.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Navigation toggle for mobile
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
