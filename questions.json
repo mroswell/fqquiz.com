@@ -1,0 +1,339 @@
+{
+  "quiz": {
+    "title": "Fluoroquinolone Antibiotics Safety Quiz",
+    "description": "Test your knowledge about fluoroquinolone antibiotics and their safety considerations",
+    "disclaimer": "This quiz is for educational purposes only and should not be used as medical advice. Always consult with a healthcare professional for medical decisions.",
+    "settings": {
+      "randomizeQuestions": true,
+      "randomizeAnswers": true,
+      "showImmediateFeedback": true,
+      "allowReview": true
+    }
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "Which of the following is NOT a fluoroquinolone antibiotic?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ciprofloxacin",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Cephalexin",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Avelox",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Levofloxacin",
+          "correct": false
+        }
+      ],
+      "explanation": "Cephalexin is a cephalosporin antibiotic, not a fluoroquinolone. Ciprofloxacin, Avelox (moxifloxacin), and Levofloxacin are all fluoroquinolone antibiotics.",
+      "category": "drug-classification",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Which of the following should NOT use fluoroquinolone antibiotics?",
+      "options": [
+        {
+          "id": "a",
+          "text": "People with connective tissue disorders like Ehlers-Danlos Syndrome (EDS)",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Pets",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Individuals over the age of 60 years old",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "All of the Above",
+          "correct": true
+        }
+      ],
+      "explanation": "All listed groups are at higher risk for adverse effects from fluoroquinolones. People with connective tissue disorders, elderly individuals, and pets should avoid these antibiotics when possible.",
+      "category": "contraindications",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "question": "Which of the following is NOT a Black Box Warning for fluoroquinolone antibiotics?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The worsening of Myasthenia Gravis",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Psychiatric effects",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Turning your skin blue",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Permanent and disabling side effects involving tendons, muscles, joints, nerves and central nervous system",
+          "correct": false
+        }
+      ],
+      "explanation": "Skin turning blue is not a Black Box Warning for fluoroquinolones. The FDA has issued Black Box Warnings for tendon/muscle/joint/nerve damage, psychiatric effects, and worsening of Myasthenia Gravis.",
+      "category": "black-box-warnings",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "question": "At the heart of fluoroquinolone toxicity, the main issue is?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tendon rupture",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Nerve damage",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Psychological trauma",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Mitochondrial damage",
+          "correct": true
+        }
+      ],
+      "explanation": "Mitochondrial damage is considered the underlying mechanism of fluoroquinolone toxicity, which can lead to the various symptoms including tendon, nerve, and other systemic issues.",
+      "category": "mechanism-of-toxicity",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q5",
+      "type": "true-false",
+      "question": "Fluoroquinolones have the most adverse events of any drug on the market.",
+      "correct": true,
+      "explanation": "Fluoroquinolones are among the drugs with the highest number of reported adverse events in pharmacovigilance databases.",
+      "category": "adverse-events",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q6",
+      "type": "multiple-choice",
+      "question": "Of the adverse effects reported for fluoroquinolone antibiotics, what percentage is considered serious or life threatening?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2%",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "25%",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "87%",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "95%",
+          "correct": false
+        }
+      ],
+      "explanation": "Approximately 87% of reported adverse effects from fluoroquinolones are classified as serious or life-threatening, highlighting the severity of potential reactions.",
+      "category": "adverse-events",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q7",
+      "type": "true-false",
+      "question": "The toxicity of fluoroquinolones is cumulative, meaning you can take a fluoroquinolone multiple times or multiple dosages before seeing any adverse effects.",
+      "correct": true,
+      "explanation": "Fluoroquinolone toxicity can be cumulative. Some people may tolerate one or more courses before experiencing adverse effects, as the damage can accumulate over time.",
+      "category": "toxicity-characteristics",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q8",
+      "type": "true-false",
+      "question": "An adverse reaction to fluoroquinolone antibiotics must be immediate.",
+      "correct": false,
+      "explanation": "Adverse reactions to fluoroquinolones can be delayed and may occur days, weeks, or even months after stopping the medication.",
+      "category": "toxicity-characteristics",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q9",
+      "type": "true-false",
+      "question": "People who regularly take benzodiazepines should avoid using fluoroquinolones whenever possible.",
+      "correct": true,
+      "explanation": "Fluoroquinolones can interfere with GABA receptors, similar to benzodiazepine withdrawal, potentially causing severe neurological symptoms in benzodiazepine users.",
+      "category": "drug-interactions",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q10",
+      "type": "multiple-choice",
+      "question": "The first Black Box Warning for tendon ruptures was released by the FDA in what year?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2010",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "2016",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "2008",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "2021",
+          "correct": false
+        }
+      ],
+      "explanation": "The FDA issued the first Black Box Warning for tendon ruptures associated with fluoroquinolones in 2008.",
+      "category": "regulatory-history",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q11",
+      "type": "multiple-choice",
+      "question": "Which of the following medications are contraindicated with fluoroquinolones?",
+      "options": [
+        {
+          "id": "a",
+          "text": "NSAIDs",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Steroids",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Benzodiazepines",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "All of the Above",
+          "correct": true
+        }
+      ],
+      "explanation": "NSAIDs, steroids, and benzodiazepines all have significant interactions with fluoroquinolones and can increase the risk of adverse effects.",
+      "category": "drug-interactions",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q12",
+      "type": "multiple-choice",
+      "question": "When you have an adverse reaction to a fluoroquinolone antibiotic, where should you be filing your report?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The CDC",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Your doctor's office",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "MedWatch",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "The hospital",
+          "correct": false
+        }
+      ],
+      "explanation": "MedWatch is the FDA's safety information and adverse event reporting program where patients and healthcare providers should report adverse drug reactions.",
+      "category": "reporting",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q13",
+      "type": "multiple-choice",
+      "question": "The FDA has stated that the adverse effects of fluoroquinolone antibiotics can happen as early as?",
+      "options": [
+        {
+          "id": "a",
+          "text": "1 day",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "1 week",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "1 month",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "2 hours",
+          "correct": true
+        }
+      ],
+      "explanation": "The FDA has documented that adverse effects from fluoroquinolones can occur as early as 2 hours after taking the medication.",
+      "category": "toxicity-characteristics",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q14",
+      "type": "true-false",
+      "question": "The adverse effects of fluoroquinolone antibiotics can happen months after you stop taking the medication.",
+      "correct": true,
+      "explanation": "Delayed adverse effects from fluoroquinolones can manifest weeks or months after discontinuation, making diagnosis and correlation challenging.",
+      "category": "toxicity-characteristics",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q15",
+      "type": "true-false",
+      "question": "An adverse reaction to a fluoroquinolone antibiotic is considered an allergic reaction.",
+      "correct": false,
+      "explanation": "Fluoroquinolone toxicity is not an allergic reaction but rather a direct toxic effect on cellular structures, particularly mitochondria, leading to various systemic symptoms.",
+      "category": "mechanism-of-toxicity",
+      "difficulty": "medium"
+    }
+  ]
+}

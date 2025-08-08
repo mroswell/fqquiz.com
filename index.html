@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Test your knowledge about fluoroquinolone antibiotics and their safety considerations">
+    <title>Fluoroquinolone Antibiotics Safety Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <!-- Header -->
+        <header class="quiz-header">
+            <h1>Fluoroquinolone Antibiotics Safety Quiz</h1>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-section">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 15</div>
+        </div>
+
+        <!-- Quiz Content -->
+        <main class="quiz-content" id="quizContent">
+            <!-- Start Screen -->
+            <div id="startScreen" class="screen">
+                <h2>Welcome to the Fluoroquinolone Safety Quiz</h2>
+                <p>Test your knowledge about fluoroquinolone antibiotics and their safety considerations.</p>
+                <ul class="quiz-features">
+                    <li>15 questions total</li>
+                    <li>Immediate feedback after each answer</li>
+                    <li>Learn important safety information</li>
+                    <li>Review all answers at the end</li>
+                </ul>
+                <button class="btn btn-primary" id="startBtn">Start Quiz</button>
+            </div>
+
+            <!-- Question Screen -->
+            <div id="questionScreen" class="screen hidden">
+                <div class="question-container">
+                    <h2 class="question-text" id="questionText"></h2>
+                    <div class="options-container" id="optionsContainer" role="group" aria-labelledby="questionText">
+                        <!-- Options will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Feedback Section -->
+                <div id="feedbackSection" class="feedback-section hidden">
+                    <div class="feedback-content" role="alert" aria-live="polite">
+                        <div class="feedback-header" id="feedbackHeader"></div>
+                        <p class="feedback-explanation" id="feedbackExplanation"></p>
+                    </div>
+                    <button class="btn btn-primary" id="nextBtn">Next Question</button>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="resultsScreen" class="screen hidden">
+                <h2>Quiz Complete!</h2>
+                <div class="score-display">
+                    <p class="final-score" id="finalScore"></p>
+                </div>
+                
+                <div class="results-actions">
+                    <button class="btn btn-primary" id="reviewBtn">Review Answers</button>
+                    <button class="btn btn-secondary" id="retryBtn">Take Quiz Again</button>
+                </div>
+            </div>
+
+            <!-- Review Screen -->
+            <div id="reviewScreen" class="screen hidden">
+                <h2>Review Your Answers</h2>
+                <div id="reviewContainer" class="review-container">
+                    <!-- Review items will be dynamically inserted here -->
+                </div>
+                <div class="review-actions">
+                    <button class="btn btn-primary" id="backToResultsBtn">Back to Results</button>
+                    <button class="btn btn-secondary" id="retryFromReviewBtn">Take Quiz Again</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="quiz-footer">
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> This quiz is for educational purposes only and should not be used as medical advice. Always consult with a healthcare professional for medical decisions.</p>
+            </div>
+            <p>Learn more about medication safety at <a href="https://www.fda.gov/drugs/drug-safety-and-availability" target="_blank" rel="noopener">FDA Drug Safety</a></p>
+        </footer>
+    </div>
+
+    <!-- No JavaScript fallback -->
+    <noscript>
+        <div class="no-js-message">
+            <h2>JavaScript Required</h2>
+            <p>This quiz requires JavaScript to function. Please enable JavaScript in your browser settings and refresh the page.</p>
+        </div>
+    </noscript>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
