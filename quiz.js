@@ -99,7 +99,25 @@ async function initQuiz() {
     if (quizData.quiz.settings.randomizeAnswers) {
         quizState.questions.forEach(question => {
             if (question.type === 'multiple-choice' && question.options) {
-                question.options = shuffleArray(question.options);
+                // Check if there's an "All of the Above" option
+                const allOfAboveIndex = question.options.findIndex(opt => 
+                    opt.text.toLowerCase().includes('all of the above')
+                );
+                
+                if (allOfAboveIndex !== -1) {
+                    // Remove "All of the Above" option temporarily
+                    const allOfAboveOption = question.options[allOfAboveIndex];
+                    const otherOptions = question.options.filter((_, index) => index !== allOfAboveIndex);
+                    
+                    // Shuffle other options
+                    const shuffledOthers = shuffleArray(otherOptions);
+                    
+                    // Add "All of the Above" back at the end
+                    question.options = [...shuffledOthers, allOfAboveOption];
+                } else {
+                    // No "All of the Above", shuffle normally
+                    question.options = shuffleArray(question.options);
+                }
             }
         });
     }
