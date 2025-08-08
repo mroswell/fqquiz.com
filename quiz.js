@@ -19,6 +19,7 @@ const elements = {
     retryBtn: document.getElementById('retryBtn'),
     backToResultsBtn: document.getElementById('backToResultsBtn'),
     retryFromReviewBtn: document.getElementById('retryFromReviewBtn'),
+    startOverBtn: document.getElementById('startOverBtn'),
     questionText: document.getElementById('questionText'),
     optionsContainer: document.getElementById('optionsContainer'),
     feedbackSection: document.getElementById('feedbackSection'),
@@ -152,6 +153,9 @@ function startQuiz() {
     hideAllScreens();
     elements.questionScreen.classList.remove('hidden');
     elements.feedbackSection.classList.add('hidden');
+    
+    // Show progress section when quiz starts
+    document.querySelector('.progress-section').classList.add('active');
     
     displayQuestion();
     updateProgress();
@@ -348,6 +352,9 @@ function showResults() {
     hideAllScreens();
     elements.resultsScreen.classList.remove('hidden');
     
+    // Hide progress section on results
+    document.querySelector('.progress-section').classList.remove('active');
+    
     // Calculate percentage
     const percentage = (quizState.score / quizState.questions.length) * 100;
     
@@ -370,6 +377,9 @@ function showResults() {
 function showReview() {
     hideAllScreens();
     elements.reviewScreen.classList.remove('hidden');
+    
+    // Hide progress section on review
+    document.querySelector('.progress-section').classList.remove('active');
     
     // Clear previous review items
     elements.reviewContainer.innerHTML = '';
@@ -413,15 +423,43 @@ function createReviewItem(answer, questionNumber) {
 
 // Reset quiz
 function resetQuiz() {
+    // Clear session storage first
+    sessionStorage.removeItem('quizState');
+    
     quizState.currentQuestionIndex = 0;
     quizState.score = 0;
     quizState.answers = [];
     quizState.isReviewMode = false;
     
+    // Hide progress section
+    document.querySelector('.progress-section').classList.remove('active');
+    
     // Re-randomize questions
     initQuiz().then(() => {
         startQuiz();
     });
+}
+
+// Start over function
+function startOver() {
+    // Clear all state
+    sessionStorage.clear();
+    
+    // Reset quiz state
+    quizState.currentQuestionIndex = 0;
+    quizState.score = 0;
+    quizState.answers = [];
+    quizState.isReviewMode = false;
+    
+    // Hide progress section
+    document.querySelector('.progress-section').classList.remove('active');
+    
+    // Hide all screens and show start screen
+    hideAllScreens();
+    elements.startScreen.classList.remove('hidden');
+    
+    // Re-initialize quiz
+    initQuiz();
 }
 
 // Event Listeners
@@ -431,6 +469,7 @@ elements.reviewBtn.addEventListener('click', showReview);
 elements.retryBtn.addEventListener('click', resetQuiz);
 elements.backToResultsBtn.addEventListener('click', showResults);
 elements.retryFromReviewBtn.addEventListener('click', resetQuiz);
+elements.startOverBtn.addEventListener('click', startOver);
 
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
@@ -442,16 +481,31 @@ document.addEventListener('keydown', (e) => {
 
 // Initialize quiz on page load
 window.addEventListener('DOMContentLoaded', () => {
+    // Add keyboard shortcut to reset (Escape key on start screen)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !elements.startScreen.classList.contains('hidden')) {
+            sessionStorage.clear();
+            location.reload();
+        }
+    });
+    
     // Check for saved state
     if (loadStateFromSession() && quizState.questions.length > 0) {
         // Resume quiz from saved state
-        if (quizState.currentQuestionIndex < quizState.questions.length) {
+        if (quizState.currentQuestionIndex < quizState.questions.length && quizState.answers.length > 0) {
             hideAllScreens();
             elements.questionScreen.classList.remove('hidden');
+            // Show progress section when resuming
+            document.querySelector('.progress-section').classList.add('active');
             displayQuestion();
             updateProgress();
-        } else {
+        } else if (quizState.answers.length === quizState.questions.length) {
+            // Quiz completed, show results
             showResults();
+        } else {
+            // Invalid state, clear and restart
+            sessionStorage.clear();
+            initQuiz();
         }
     } else {
         // Initialize new quiz
