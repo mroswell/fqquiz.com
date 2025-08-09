@@ -87,32 +87,32 @@ function shuffleArray(array) {
 // Initialize quiz
 async function initQuiz() {
     const quizData = await loadQuestions();
-
+    
     // Set up questions
     quizState.questions = quizData.questions;
-
+    
     // Randomize questions if setting is enabled
     if (quizData.quiz.settings.randomizeQuestions) {
         quizState.questions = shuffleArray(quizState.questions);
     }
-
+    
     // Randomize answer options for multiple choice questions
     if (quizData.quiz.settings.randomizeAnswers) {
         quizState.questions.forEach(question => {
             if (question.type === 'multiple-choice' && question.options) {
                 // Check if there's an "All of the Above" option
-                const allOfAboveIndex = question.options.findIndex(opt =>
+                const allOfAboveIndex = question.options.findIndex(opt => 
                     opt.text.toLowerCase().includes('all of the above')
                 );
-
+                
                 if (allOfAboveIndex !== -1) {
                     // Remove "All of the Above" option temporarily
                     const allOfAboveOption = question.options[allOfAboveIndex];
                     const otherOptions = question.options.filter((_, index) => index !== allOfAboveIndex);
-
+                    
                     // Shuffle other options
                     const shuffledOthers = shuffleArray(otherOptions);
-
+                    
                     // Add "All of the Above" back at the end
                     question.options = [...shuffledOthers, allOfAboveOption];
                 } else {
@@ -122,14 +122,23 @@ async function initQuiz() {
             }
         });
     }
-
-    // Save to session storage for persistence during navigation
+    
+    // Save to session storage for persistence
     saveStateToSession();
 }
 
 // Save state to session storage
 function saveStateToSession() {
     sessionStorage.setItem('quizState', JSON.stringify(quizState));
+    
+    // Show "Progress saved" indicator briefly
+    const savedIndicator = document.getElementById('progressSaved');
+    if (savedIndicator && quizState.currentQuestionIndex > 0) {
+        savedIndicator.classList.add('show');
+        setTimeout(() => {
+            savedIndicator.classList.remove('show');
+        }, 2000);
+    }
 }
 
 // Load state from session storage
@@ -149,14 +158,14 @@ function startQuiz() {
     quizState.score = 0;
     quizState.answers = [];
     quizState.isReviewMode = false;
-
+    
     hideAllScreens();
     elements.questionScreen.classList.remove('hidden');
     elements.feedbackSection.classList.add('hidden');
-
+    
     // Show progress section when quiz starts
     document.querySelector('.progress-section').classList.add('active');
-
+    
     displayQuestion();
     updateProgress();
     saveStateToSession();
@@ -173,14 +182,14 @@ function hideAllScreens() {
 // Display current question
 function displayQuestion() {
     const question = quizState.questions[quizState.currentQuestionIndex];
-
+    
     // Update question text
     elements.questionText.textContent = question.question;
-
+    
     // Clear previous options
     elements.optionsContainer.innerHTML = '';
     elements.feedbackSection.classList.add('hidden');
-
+    
     // Create options based on question type
     if (question.type === 'true-false') {
         displayTrueFalseOptions(question);
@@ -193,10 +202,10 @@ function displayQuestion() {
 function displayTrueFalseOptions(question) {
     const container = document.createElement('div');
     container.className = 'true-false-container';
-
+    
     const trueBtn = createOptionButton('A. True', question.correct === true, question, 'A', 'True');
     const falseBtn = createOptionButton('B. False', question.correct === false, question, 'B', 'False');
-
+    
     container.appendChild(trueBtn);
     container.appendChild(falseBtn);
     elements.optionsContainer.appendChild(container);
@@ -219,11 +228,11 @@ function createOptionButton(displayText, isCorrect, question, optionId = null, o
     button.textContent = displayText;
     button.setAttribute('aria-label', displayText);
     button.setAttribute('data-original-text', originalText || displayText);
-
+    
     button.addEventListener('click', () => {
         handleAnswerSelection(button, isCorrect, question, originalText || displayText);
     });
-
+    
     // Add keyboard support
     button.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -231,7 +240,7 @@ function createOptionButton(displayText, isCorrect, question, optionId = null, o
             handleAnswerSelection(button, isCorrect, question, originalText || displayText);
         }
     });
-
+    
     return button;
 }
 
@@ -239,21 +248,21 @@ function createOptionButton(displayText, isCorrect, question, optionId = null, o
 function handleAnswerSelection(selectedButton, isCorrect, question, answerText) {
     // Prevent multiple selections
     if (selectedButton.classList.contains('disabled')) return;
-
+    
     // Disable all options
     const allButtons = elements.optionsContainer.querySelectorAll('.option-button');
     allButtons.forEach(btn => {
         btn.classList.add('disabled');
         btn.setAttribute('aria-disabled', 'true');
     });
-
+    
     // Mark selected answer
     if (isCorrect) {
         selectedButton.classList.add('correct');
         quizState.score++;
     } else {
         selectedButton.classList.add('incorrect');
-
+        
         // Show correct answer
         if (question.type === 'true-false') {
             const correctAnswer = question.correct ? 'A. True' : 'B. False';
@@ -272,14 +281,14 @@ function handleAnswerSelection(selectedButton, isCorrect, question, answerText) 
             });
         }
     }
-
+    
     // Mark unselected options
     allButtons.forEach(btn => {
         if (!btn.classList.contains('correct') && !btn.classList.contains('incorrect')) {
             btn.classList.add('unselected');
         }
     });
-
+    
     // Store answer
     quizState.answers.push({
         questionId: question.id,
@@ -289,10 +298,10 @@ function handleAnswerSelection(selectedButton, isCorrect, question, answerText) 
         isCorrect: isCorrect,
         explanation: question.explanation
     });
-
+    
     // Show feedback
     showFeedback(isCorrect, question.explanation);
-
+    
     // Save state
     saveStateToSession();
 }
@@ -310,18 +319,18 @@ function getCorrectAnswerText(question) {
 // Show feedback
 function showFeedback(isCorrect, explanation) {
     elements.feedbackSection.classList.remove('hidden');
-
+    
     // Set feedback header
     elements.feedbackHeader.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
     elements.feedbackHeader.className = 'feedback-header ' + (isCorrect ? 'correct' : 'incorrect');
-
+    
     // Set explanation (use innerHTML to support links)
     elements.feedbackExplanation.innerHTML = explanation;
-
+    
     // Update next button text
     const isLastQuestion = quizState.currentQuestionIndex === quizState.questions.length - 1;
     elements.nextBtn.textContent = isLastQuestion ? 'View Results' : 'Next Question';
-
+    
     // Scroll Next button into view on mobile
     setTimeout(() => {
         elements.nextBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -351,13 +360,13 @@ function updateProgress() {
 function showResults() {
     hideAllScreens();
     elements.resultsScreen.classList.remove('hidden');
-
+    
     // Hide progress section on results
     document.querySelector('.progress-section').classList.remove('active');
-
+    
     // Calculate percentage
     const percentage = (quizState.score / quizState.questions.length) * 100;
-
+    
     // Format percentage (no decimal if .0, otherwise one decimal)
     let percentageText;
     if (percentage % 1 === 0) {
@@ -365,10 +374,10 @@ function showResults() {
     } else {
         percentageText = percentage.toFixed(1) + '%';
     }
-
+    
     // Display score
     elements.finalScore.textContent = `You scored ${quizState.score} out of ${quizState.questions.length} (${percentageText})`;
-
+    
     // Clear session storage
     sessionStorage.removeItem('quizState');
 }
@@ -377,13 +386,13 @@ function showResults() {
 function showReview() {
     hideAllScreens();
     elements.reviewScreen.classList.remove('hidden');
-
+    
     // Hide progress section on review
     document.querySelector('.progress-section').classList.remove('active');
-
+    
     // Clear previous review items
     elements.reviewContainer.innerHTML = '';
-
+    
     // Create review items for each answer
     quizState.answers.forEach((answer, index) => {
         const reviewItem = createReviewItem(answer, index + 1);
@@ -395,29 +404,29 @@ function showReview() {
 function createReviewItem(answer, questionNumber) {
     const item = document.createElement('div');
     item.className = 'review-item ' + (answer.isCorrect ? 'correct' : 'incorrect');
-
+    
     const questionEl = document.createElement('div');
     questionEl.className = 'review-question';
     questionEl.textContent = `${questionNumber}. ${answer.question}`;
     item.appendChild(questionEl);
-
+    
     const userAnswerEl = document.createElement('div');
     userAnswerEl.className = 'review-answer user-answer';
     userAnswerEl.innerHTML = `<strong>Your answer:</strong> ${answer.userAnswer} ${answer.isCorrect ? '✓' : '✗'}`;
     item.appendChild(userAnswerEl);
-
+    
     if (!answer.isCorrect) {
         const correctAnswerEl = document.createElement('div');
         correctAnswerEl.className = 'review-answer correct-answer';
         correctAnswerEl.innerHTML = `<strong>Correct answer:</strong> ${answer.correctAnswer}`;
         item.appendChild(correctAnswerEl);
     }
-
+    
     const explanationEl = document.createElement('div');
     explanationEl.className = 'review-explanation';
     explanationEl.innerHTML = answer.explanation;
     item.appendChild(explanationEl);
-
+    
     return item;
 }
 
@@ -425,15 +434,15 @@ function createReviewItem(answer, questionNumber) {
 function resetQuiz() {
     // Clear session storage first
     sessionStorage.removeItem('quizState');
-
+    
     quizState.currentQuestionIndex = 0;
     quizState.score = 0;
     quizState.answers = [];
     quizState.isReviewMode = false;
-
+    
     // Hide progress section
     document.querySelector('.progress-section').classList.remove('active');
-
+    
     // Re-randomize questions
     initQuiz().then(() => {
         startQuiz();
@@ -444,20 +453,20 @@ function resetQuiz() {
 function startOver() {
     // Clear all state
     sessionStorage.clear();
-
+    
     // Reset quiz state
     quizState.currentQuestionIndex = 0;
     quizState.score = 0;
     quizState.answers = [];
     quizState.isReviewMode = false;
-
+    
     // Hide progress section
     document.querySelector('.progress-section').classList.remove('active');
-
+    
     // Hide all screens and show start screen
     hideAllScreens();
     elements.startScreen.classList.remove('hidden');
-
+    
     // Re-initialize quiz
     initQuiz();
 }
@@ -481,6 +490,14 @@ document.addEventListener('keydown', (e) => {
 
 // Initialize quiz on page load
 window.addEventListener('DOMContentLoaded', () => {
+    // Add keyboard shortcut to reset (Escape key on start screen)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !elements.startScreen.classList.contains('hidden')) {
+            sessionStorage.clear();
+            location.reload();
+        }
+    });
+    
     // Check for saved state
     if (loadStateFromSession() && quizState.questions.length > 0) {
         // Resume quiz from saved state
@@ -510,4 +527,35 @@ document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
         saveStateToSession();
     }
+});
+
+// Handle navigation during quiz
+document.addEventListener('DOMContentLoaded', () => {
+    // Add click handlers to navigation links
+    const navLinks = document.querySelectorAll('.nav-menu a:not(.active)');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Check if quiz is in progress
+            const isQuizInProgress = quizState.currentQuestionIndex > 0 && 
+                                     quizState.currentQuestionIndex < quizState.questions.length &&
+                                     quizState.answers.length < quizState.questions.length;
+            
+            if (isQuizInProgress) {
+                e.preventDefault();
+                const questionNum = quizState.currentQuestionIndex + 1;
+                const destination = link.textContent.trim();
+                
+                // Save state before asking
+                saveStateToSession();
+                
+                // Use a friendly confirm dialog
+                const message = `You're on question ${questionNum} of 15.\n\nYour progress has been saved! You can return to finish the quiz anytime.\n\nGo to ${destination} page?`;
+                
+                if (confirm(message)) {
+                    // User wants to leave, allow navigation
+                    window.location.href = link.href;
+                }
+            }
+        });
+    });
 });

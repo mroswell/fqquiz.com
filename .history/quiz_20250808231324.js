@@ -123,13 +123,22 @@ async function initQuiz() {
         });
     }
 
-    // Save to session storage for persistence during navigation
+    // Save to session storage for persistence
     saveStateToSession();
 }
 
 // Save state to session storage
 function saveStateToSession() {
     sessionStorage.setItem('quizState', JSON.stringify(quizState));
+
+    // Show "Progress saved" indicator briefly
+    const savedIndicator = document.getElementById('progressSaved');
+    if (savedIndicator && quizState.currentQuestionIndex > 0) {
+        savedIndicator.classList.add('show');
+        setTimeout(() => {
+            savedIndicator.classList.remove('show');
+        }, 2000);
+    }
 }
 
 // Load state from session storage
@@ -481,6 +490,14 @@ document.addEventListener('keydown', (e) => {
 
 // Initialize quiz on page load
 window.addEventListener('DOMContentLoaded', () => {
+    // Add keyboard shortcut to reset (Escape key on start screen)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !elements.startScreen.classList.contains('hidden')) {
+            sessionStorage.clear();
+            location.reload();
+        }
+    });
+
     // Check for saved state
     if (loadStateFromSession() && quizState.questions.length > 0) {
         // Resume quiz from saved state
@@ -510,4 +527,35 @@ document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
         saveStateToSession();
     }
+});
+
+// Handle navigation during quiz
+document.addEventListener('DOMContentLoaded', () => {
+    // Add click handlers to navigation links
+    const navLinks = document.querySelectorAll('.nav-menu a:not(.active)');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Check if quiz is in progress
+            const isQuizInProgress = quizState.currentQuestionIndex > 0 &&
+                quizState.currentQuestionIndex < quizState.questions.length &&
+                quizState.answers.length < quizState.questions.length;
+
+            if (isQuizInProgress) {
+                e.preventDefault();
+                const questionNum = quizState.currentQuestionIndex + 1;
+                const destination = link.textContent.trim();
+
+                // Save state before asking
+                saveStateToSession();
+
+                // Use a friendly confirm dialog
+                const message = `You're on question ${questionNum} of 15. Your progress has been saved!\n\nYou can return to finish the quiz anytime.\n\nGo to ${destination} page?`;
+
+                if (confirm(message)) {
+                    // User wants to leave, allow navigation
+                    window.location.href = link.href;
+                }
+            }
+        });
+    });
 });

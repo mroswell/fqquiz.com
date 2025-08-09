@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Support Talia's fight against fluoroquinolone toxicity">
+    <title>Donate - Support Talia's Fight</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="donate.html" class="active">Donate</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- Header -->
+        <header class="page-header">
+            <h1>Support Talia's Fight</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content donate-page">
+            <div class="donate-container">
+                <section class="story-section">
+                    <h2>Talia's Story</h2>
+                    <p>Talia Smith was a healthy professional and caregiver to her disabled veteran husband until taking Ciprofloxacin in April 2021. After just 3 pills, she was hospitalized and developed severe complications including Mast Cell Activation Syndrome, leaving her wheelchair-bound and requiring 24/7 care. Your donation helps Talia access vital alternative treatments not covered by insurance as she continues fighting for her life.</p>
+                </section>
+
+                <section class="donate-action">
+                    <h2>Make a Difference</h2>
+                    <p>Every contribution, no matter the size, helps Talia continue her treatments and gives her hope.</p>
+                    
+                    <div class="donate-button-container">
+                        <a href="https://www.gofundme.com/f/support-talias-fight-for-health-and-hope" 
+                           target="_blank" 
+                           rel="noopener" 
+                           class="donate-button">
+                            Donate on GoFundMe
+                        </a>
+                    </div>
+                    
+                    <p class="donate-note">You will be redirected to GoFundMe to complete your donation securely.</p>
+                </section>
+
+                <section class="thank-you">
+                    <p><em>From the bottom of our hearts, thank you for your support and prayers.</em></p>
+                    <p class="signature">- Michael Medeiros and Family</p>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="quiz-footer">
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> This information is for educational purposes only and should not be used as medical advice. Consult with a healthcare professional for medical decisions.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Navigation toggle for mobile
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
