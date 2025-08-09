@@ -94,25 +94,28 @@ body {
     position: relative;
 }
 
-.nav-menu a::after {
-    content: '';
-    position: absolute;
-    bottom: 8px; /* Closer to text */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: var(--primary-color);
-    transition: width 0.3s ease;
-}
-
 .nav-menu a:hover {
     background: var(--bg-secondary);
     color: var(--primary-color);
 }
 
-.nav-menu a.active::after {
-    width: 50%;
+/* Desktop only - underline effect */
+@media (min-width: 768px) {
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+    }
+    
+    .nav-menu a.active::after {
+        width: 50%;
+    }
 }
 
 .nav-menu a.active {
@@ -156,29 +159,39 @@ body {
 
 /* Mobile Navigation */
 @media (max-width: 767px) {
+    /* Hamburger toggle button */
     .nav-toggle {
         display: block;
+        z-index: 1001;
     }
     
+    /* Mobile menu container */
     .nav-menu {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background: white;
+        background: rgb(255, 255, 255) !important;
+        background-color: white !important;
         flex-direction: column;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         border-bottom: 2px solid var(--border-color);
-        z-index: 1000;
+        z-index: 999;
+        height: auto !important;
+        max-height: calc(100vh - 48px);
+        overflow-y: auto;
     }
     
     .nav-menu.active {
-        display: flex;
+        display: flex !important;
     }
     
     .nav-menu li {
         border-bottom: 1px solid var(--border-color);
+        display: block !important;
+        flex: none !important;
+        background: white;
     }
     
     .nav-menu li:last-child {
@@ -186,19 +199,24 @@ body {
     }
     
     .nav-menu a {
-        text-align: left;
-        padding: 16px;
-        height: auto;
-    }
-    
-    /* Remove underline pseudo-element on mobile */
-    .nav-menu a::after {
-        display: none;
+        text-align: left !important;
+        padding: 16px 20px !important;
+        height: auto !important;
+        display: block !important;
+        border: none !important;
+        border-left: 4px solid transparent !important;
+        background: white !important;
+        position: relative !important;
     }
     
     .nav-menu a.active {
-        border-left: 3px solid var(--primary-color);
-        background: var(--bg-secondary);
+        border-left-color: var(--primary-color) !important;
+        background: #f8f9fa !important;
+        color: var(--primary-color) !important;
+    }
+    
+    .nav-menu a:hover {
+        background: #f8f9fa !important;
     }
 }
 
