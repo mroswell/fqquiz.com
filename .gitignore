@@ -1,0 +1,83 @@
+# Private files
+prompts.txt
+
+# Local history
+.lh/
+.history/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.atom/
+
+# Dependencies
+node_modules/
+bower_components/
+
+# Build and distribution
+dist/
+build/
+*.min.js
+*.min.css
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Cache
+.cache/
+.sass-cache/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Backup files
+*.bak
+*.backup
+*_backup
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# Certificates and keys
+*.pem
+*.key
+*.crt
+*.cert
+
+# Database files
+*.sqlite
+*.db
+
+# Debug files
+debug/
