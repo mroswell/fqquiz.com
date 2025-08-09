@@ -369,8 +369,113 @@ function showResults() {
     // Display score
     elements.finalScore.textContent = `You scored ${quizState.score} out of ${quizState.questions.length} (${percentageText})`;
 
+    // Store results for sharing
+    quizState.percentageText = percentageText;
+
     // Clear session storage
     sessionStorage.removeItem('quizState');
+
+    // Setup share buttons
+    setupShareButtons();
+}
+
+// Setup share button functionality
+function setupShareButtons() {
+    const score = quizState.score;
+    const total = quizState.questions.length;
+    const percentage = quizState.percentageText;
+    
+    // Share text templates
+    const shareText = `I scored ${score} out of ${total} (${percentage}) on the Fluoroquinolone Antibiotics Safety Quiz! Test your knowledge:`;
+    const url = 'https://fqquiz.com';
+    
+    // Remove any existing event listeners by cloning elements
+    const shareFacebook = document.getElementById('shareFacebook');
+    const newShareFacebook = shareFacebook.cloneNode(true);
+    shareFacebook.parentNode.replaceChild(newShareFacebook, shareFacebook);
+    
+    const shareTwitter = document.getElementById('shareTwitter');
+    const newShareTwitter = shareTwitter.cloneNode(true);
+    shareTwitter.parentNode.replaceChild(newShareTwitter, shareTwitter);
+    
+    const shareLinkedIn = document.getElementById('shareLinkedIn');
+    const newShareLinkedIn = shareLinkedIn.cloneNode(true);
+    shareLinkedIn.parentNode.replaceChild(newShareLinkedIn, shareLinkedIn);
+    
+    const copyLink = document.getElementById('copyLink');
+    const newCopyLink = copyLink.cloneNode(true);
+    copyLink.parentNode.replaceChild(newCopyLink, copyLink);
+    
+    // Facebook share
+    document.getElementById('shareFacebook').addEventListener('click', () => {
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        window.open(facebookUrl, '_blank', 'width=600,height=400');
+    });
+    
+    // Twitter/X share
+    document.getElementById('shareTwitter').addEventListener('click', () => {
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        window.open(twitterUrl, '_blank', 'width=600,height=400');
+    });
+    
+    // LinkedIn share
+    document.getElementById('shareLinkedIn').addEventListener('click', () => {
+        const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+        window.open(linkedInUrl, '_blank', 'width=600,height=400');
+    });
+    
+    // Copy link
+    document.getElementById('copyLink').addEventListener('click', () => {
+        const textToCopy = `${shareText} ${url}`;
+        
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showCopyFeedback();
+            }).catch(() => {
+                fallbackCopyToClipboard(textToCopy);
+            });
+        } else {
+            fallbackCopyToClipboard(textToCopy);
+        }
+    });
+}
+
+// Show copy feedback message
+function showCopyFeedback() {
+    const feedback = document.getElementById('copyFeedback');
+    feedback.classList.add('show');
+    setTimeout(() => {
+        feedback.classList.remove('show');
+    }, 2000);
+}
+
+// Fallback copy method for older browsers
+function fallbackCopyToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.width = '2em';
+    textArea.style.height = '2em';
+    textArea.style.padding = '0';
+    textArea.style.border = 'none';
+    textArea.style.outline = 'none';
+    textArea.style.boxShadow = 'none';
+    textArea.style.background = 'transparent';
+    
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        showCopyFeedback();
+    } catch (err) {
+        console.error('Failed to copy text:', err);
+    }
+    
+    document.body.removeChild(textArea);
 }
 
 // Show review screen

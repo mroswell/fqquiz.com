@@ -564,6 +564,114 @@ body {
     margin-bottom: 16px;
 }
 
+/* Share Section */
+.share-section {
+    margin: 32px 0;
+    padding: 24px 16px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+}
+
+.share-section h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 110px;
+    justify-content: center;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.share-btn svg {
+    fill: currentColor;
+}
+
+.share-facebook {
+    color: #1877f2;
+    border-color: #1877f2;
+}
+
+.share-facebook:hover {
+    background: #1877f2;
+    color: white;
+}
+
+.share-twitter {
+    color: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.share-twitter:hover {
+    background: #1da1f2;
+    color: white;
+}
+
+.share-linkedin {
+    color: #0077b5;
+    border-color: #0077b5;
+}
+
+.share-linkedin:hover {
+    background: #0077b5;
+    color: white;
+}
+
+.share-copy {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.share-copy:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.copy-feedback {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: var(--success-color);
+    color: white;
+    border-radius: var(--radius);
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.copy-feedback.show {
+    display: inline-block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .results-actions {
     display: flex;
     flex-direction: column;
