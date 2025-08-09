@@ -157,6 +157,14 @@ function startQuiz() {
     // Show progress section when quiz starts
     document.querySelector('.progress-section').classList.add('active');
 
+    // Track quiz start event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'quiz_start', {
+            'quiz_name': 'Fluoroquinolone Safety Quiz',
+            'total_questions': quizState.questions.length
+        });
+    }
+
     displayQuestion();
     updateProgress();
     saveStateToSession();
@@ -180,6 +188,16 @@ function displayQuestion() {
     // Clear previous options
     elements.optionsContainer.innerHTML = '';
     elements.feedbackSection.classList.add('hidden');
+
+    // Track question view event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'question_view', {
+            'question_number': quizState.currentQuestionIndex + 1,
+            'question_id': question.id,
+            'question_type': question.type,
+            'question_text': question.question.substring(0, 100)
+        });
+    }
 
     // Create options based on question type
     if (question.type === 'true-false') {
@@ -290,6 +308,16 @@ function handleAnswerSelection(selectedButton, isCorrect, question, answerText) 
         explanation: question.explanation
     });
 
+    // Track answer selection event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'answer_selected', {
+            'question_number': quizState.currentQuestionIndex + 1,
+            'question_id': question.id,
+            'is_correct': isCorrect,
+            'answer_text': answerText.substring(0, 50)
+        });
+    }
+
     // Show feedback
     showFeedback(isCorrect, question.explanation);
 
@@ -372,6 +400,16 @@ function showResults() {
     // Store results for sharing
     quizState.percentageText = percentageText;
 
+    // Track quiz completion event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'quiz_complete', {
+            'score': quizState.score,
+            'total_questions': quizState.questions.length,
+            'percentage': percentage,
+            'percentage_text': percentageText
+        });
+    }
+
     // Clear session storage
     sessionStorage.removeItem('quizState');
 
@@ -408,24 +446,56 @@ function setupShareButtons() {
     
     // Facebook share
     document.getElementById('shareFacebook').addEventListener('click', () => {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'share', {
+                'method': 'facebook',
+                'content_type': 'quiz_result',
+                'score': score,
+                'percentage': percentage
+            });
+        }
         const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
         window.open(facebookUrl, '_blank', 'width=600,height=400');
     });
     
     // Twitter/X share
     document.getElementById('shareTwitter').addEventListener('click', () => {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'share', {
+                'method': 'twitter',
+                'content_type': 'quiz_result',
+                'score': score,
+                'percentage': percentage
+            });
+        }
         const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
         window.open(twitterUrl, '_blank', 'width=600,height=400');
     });
     
     // LinkedIn share
     document.getElementById('shareLinkedIn').addEventListener('click', () => {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'share', {
+                'method': 'linkedin',
+                'content_type': 'quiz_result',
+                'score': score,
+                'percentage': percentage
+            });
+        }
         const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
         window.open(linkedInUrl, '_blank', 'width=600,height=400');
     });
     
     // Copy link
     document.getElementById('copyLink').addEventListener('click', () => {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'share', {
+                'method': 'copy_link',
+                'content_type': 'quiz_result',
+                'score': score,
+                'percentage': percentage
+            });
+        }
         const textToCopy = `${shareText} ${url}`;
         
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -483,6 +553,14 @@ function showReview() {
     hideAllScreens();
     elements.reviewScreen.classList.remove('hidden');
 
+    // Track review event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'quiz_review', {
+            'score': quizState.score,
+            'total_questions': quizState.questions.length
+        });
+    }
+
     // Hide progress section on review
     document.querySelector('.progress-section').classList.remove('active');
 
@@ -535,6 +613,13 @@ function resetQuiz() {
     quizState.score = 0;
     quizState.answers = [];
     quizState.isReviewMode = false;
+
+    // Track quiz retry event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'quiz_retry', {
+            'quiz_name': 'Fluoroquinolone Safety Quiz'
+        });
+    }
 
     // Hide progress section
     document.querySelector('.progress-section').classList.remove('active');
