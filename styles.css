@@ -166,10 +166,11 @@ body {
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--bg-primary);
+        background: white;
         flex-direction: column;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        border-bottom: 2px solid var(--border-color);
+        z-index: 1000;
     }
     
     .nav-menu.active {
@@ -186,13 +187,18 @@ body {
     
     .nav-menu a {
         text-align: left;
-        border-bottom: none;
-        border-left: 3px solid transparent;
+        padding: 16px;
+        height: auto;
+    }
+    
+    /* Remove underline pseudo-element on mobile */
+    .nav-menu a::after {
+        display: none;
     }
     
     .nav-menu a.active {
-        border-left-color: var(--primary-color);
-        border-bottom: none;
+        border-left: 3px solid var(--primary-color);
+        background: var(--bg-secondary);
     }
 }
 
