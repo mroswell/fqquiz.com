@@ -458,7 +458,8 @@ function setupShareButtons() {
                 'percentage': percentage
             });
         }
-        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        const fullShareText = `${shareText} ${url}`;
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(fullShareText)}`;
         window.open(facebookUrl, '_blank', 'width=600,height=400');
     });
     
@@ -486,6 +487,8 @@ function setupShareButtons() {
                 'percentage': percentage
             });
         }
+        // LinkedIn doesn't support pre-filled text in their current share API
+        // The share will use the Open Graph meta tags from the page
         const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
         window.open(linkedInUrl, '_blank', 'width=600,height=400');
     });
