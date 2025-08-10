@@ -127,7 +127,7 @@
           "correct": true
         }
       ],
-      "explanation": "Mitochondrial damage is considered the underlying mechanism of fluoroquinolone toxicity, which can lead to the various symptoms including tendon, nerve, and other systemic issues.",
+      "explanation": "Mitochondrial damage is considered the underlying mechanism of fluoroquinolone toxicity, which can lead to the various symptoms including tendon, nerve, and other systemic issues.<sup>1</sup> <br><br><small><sup>1</sup> <a href='https://pmc.ncbi.nlm.nih.gov/articles/PMC12036814/' target='_blank' rel='noopener'>Chemical Proteomics Reveals Human Off‐Targets of Fluoroquinolone Induced Mitochondrial Toxicity</a></small>",
       "category": "mechanism-of-toxicity",
       "difficulty": "hard"
     },
@@ -193,7 +193,7 @@
       "type": "true-false",
       "question": "People who regularly take benzodiazepines should avoid using fluoroquinolones whenever possible.",
       "correct": true,
-      "explanation": "Fluoroquinolones can interfere with GABA receptors, similar to benzodiazepine withdrawal, potentially causing severe neurological symptoms in benzodiazepine users.",
+      "explanation": "Fluoroquinolones can interfere with GABA receptors, similar to benzodiazepine withdrawal, potentially causing severe neurological symptoms in benzodiazepine users.<sup>1,2,3</sup> <br><br><small><sup>1</sup> <a href='https://pmc.ncbi.nlm.nih.gov/articles/PMC1368276/' target='_blank' rel='noopener'>Possible interaction of fluoroquinolones with the benzodiazepine-GABAA-receptor complex</a><br><sup>2</sup> <a href='https://pmc.ncbi.nlm.nih.gov/articles/PMC2435654/' target='_blank' rel='noopener'>Benzodiazepine tolerance, dependency, and withdrawal syndromes and interactions with fluoroquinolone antimicrobials</a><br><sup>3</sup> <a href='https://www.benzoinfo.com/2017/10/12/hidden-dangers-of-fluoroquinolone-antibiotics-in-the-benzodiazepine-dependent-population/' target='_blank' rel='noopener'>Hidden Dangers of Fluoroquinolone Antibiotics in the Benzodiazepine-Dependent Population</a></small>",
       "category": "drug-interactions",
       "difficulty": "medium"
     },
@@ -223,7 +223,7 @@
           "correct": false
         }
       ],
-      "explanation": "The FDA issued the first Black Box Warning for tendon ruptures associated with fluoroquinolones in 2008.<sup>1</sup> <br><br><small><sup>1</sup> <a href='https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-fda-updates-warnings-oral-and-injectable-fluoroquinolone-antibiotics' target='_blank' rel='noopener'>FDA Drug Safety Communication</a></small>",
+      "explanation": "The FDA issued the first Black Box Warning for tendon ruptures associated with fluoroquinolones in 2008.<sup>1,2,3</sup> <br><br><small><sup>1</sup> <a href='https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-fda-updates-warnings-oral-and-injectable-fluoroquinolone-antibiotics' target='_blank' rel='noopener'>FDA Drug Safety Communication</a><br><sup>2</sup> <a href='https://pmc.ncbi.nlm.nih.gov/articles/PMC2483892/' target='_blank' rel='noopener'>FDA adds 'black box' warning label to fluoroquinolone antibiotics</a><br><sup>3</sup> <a href='https://www.medscape.com/viewarticle/577302' target='_blank' rel='noopener'>Fluoroquinolones Earn Black Box Warning for Tendon-Related Adverse Effects</a></small>",
       "category": "regulatory-history",
       "difficulty": "medium"
     },
@@ -283,7 +283,7 @@
           "correct": false
         }
       ],
-      "explanation": "MedWatch is the FDA's safety information and adverse event reporting program where patients and healthcare providers should report adverse drug reactions.",
+      "explanation": "MedWatch is the FDA's safety information and adverse event reporting program where patients and healthcare providers should report adverse drug reactions.<sup>1</sup> <br><br><small><sup>1</sup> <a href='https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program/information-about-reporting-adverse-events-fdas-medwatch-program' target='_blank' rel='noopener'>Information About Reporting Adverse Events to FDAs MedWatch Program</a></small>",
       "category": "reporting",
       "difficulty": "easy"
     },
@@ -313,7 +313,7 @@
           "correct": true
         }
       ],
-      "explanation": "The FDA has documented that adverse effects from fluoroquinolones can occur as early as 2 hours after taking the medication.",
+      "explanation": "The FDA has documented that adverse effects from fluoroquinolones can occur as early as 2 hours after taking the medication.<sup>1,2</sup> <br><br><small><sup>1</sup> <a href='https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-fda-updates-warnings-oral-and-injectable-fluoroquinolone-antibiotics' target='_blank' rel='noopener'>FDA Drug Safety Communication: FDA updates warnings for oral and injectable fluoroquinolone antibiotics due to disabling side effects</a><br><sup>2</sup> <a href='https://pmc.ncbi.nlm.nih.gov/articles/PMC4600819/' target='_blank' rel='noopener'>Fluoroquinolone-induced serious, persistent, multisymptom adverse effects</a></small>",
       "category": "toxicity-characteristics",
       "difficulty": "medium"
     },
@@ -322,7 +322,7 @@
       "type": "true-false",
       "question": "The adverse effects of fluoroquinolone antibiotics can happen months after you stop taking the medication.",
       "correct": true,
-      "explanation": "Delayed adverse effects from fluoroquinolones can manifest weeks or months after discontinuation, making diagnosis and correlation challenging.",
+      "explanation": "Delayed adverse effects from fluoroquinolones can manifest weeks or months after discontinuation, making diagnosis and correlation challenging.<sup>1,2</sup> <br><br><small><sup>1</sup> <a href='https://www.gov.uk/drug-safety-update/fluoroquinolone-antibiotics-reminder-of-the-risk-of-disabling-and-potentially-long-lasting-or-irreversible-side-effects' target='_blank' rel='noopener'>UK Gov: Fluoroquinolone antibiotics: reminder of the risk of disabling and potentially long-lasting or irreversible side effects</a><br><sup>2</sup> <a href='https://www.ema.europa.eu/en/news/disabling-potentially-permanent-side-effects-lead-suspension-or-restrictions-quinolone-fluoroquinolone-antibiotics' target='_blank' rel='noopener'>EMA: Disabling and potentially permanent side effects lead to suspension or restrictions of quinolone and fluoroquinolone antibiotics</a></small>",
       "category": "toxicity-characteristics",
       "difficulty": "easy"
     },
