@@ -88,13 +88,8 @@ function shuffleArray(array) {
 async function initQuiz() {
     const quizData = await loadQuestions();
 
-    // Set up questions
+    // Set up questions (keep original order, don't randomize)
     quizState.questions = quizData.questions;
-
-    // Randomize questions if setting is enabled
-    if (quizData.quiz.settings.randomizeQuestions) {
-        quizState.questions = shuffleArray(quizState.questions);
-    }
 
     // Randomize answer options for multiple choice questions
     if (quizData.quiz.settings.randomizeAnswers) {
@@ -422,9 +417,18 @@ function setupShareButtons() {
     const score = quizState.score;
     const total = quizState.questions.length;
     const percentage = quizState.percentageText;
+    const percentageNum = (score / total) * 100;
     
-    // Share text templates
-    const shareText = `I scored ${score} out of ${total} (${percentage}) on the Fluoroquinolone Antibiotics Safety Quiz! Test your knowledge:`;
+    // Determine share message based on score
+    let shareText;
+    if (percentageNum >= 84) {
+        shareText = `I scored ${score}/15 on the Fluoroquinolone Safety Quiz! Help spread awareness about these important medication risks:`;
+    } else if (percentageNum >= 65) {
+        shareText = `I learned so much! Scored ${score}/15 on the Fluoroquinolone Safety Quiz. This information could save lives:`;
+    } else {
+        shareText = `Eye-opening! I only got ${score}/15 on the Fluoroquinolone Safety Quiz, but learned crucial safety info everyone needs:`;
+    }
+    
     const url = 'https://fqquiz.com';
     
     // Remove any existing event listeners by cloning elements
@@ -486,7 +490,7 @@ function setupShareButtons() {
         window.open(linkedInUrl, '_blank', 'width=600,height=400');
     });
     
-    // Copy link
+    // Copy link (only copy URL, no text)
     document.getElementById('copyLink').addEventListener('click', () => {
         if (typeof gtag !== 'undefined') {
             gtag('event', 'share', {
@@ -496,16 +500,15 @@ function setupShareButtons() {
                 'percentage': percentage
             });
         }
-        const textToCopy = `${shareText} ${url}`;
         
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(textToCopy).then(() => {
+            navigator.clipboard.writeText(url).then(() => {
                 showCopyFeedback();
             }).catch(() => {
-                fallbackCopyToClipboard(textToCopy);
+                fallbackCopyToClipboard(url);
             });
         } else {
-            fallbackCopyToClipboard(textToCopy);
+            fallbackCopyToClipboard(url);
         }
     });
 }
